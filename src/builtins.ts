@@ -9643,7 +9643,7 @@ export function compileVisitMembers(compiler: Compiler): void {
   var nextId = 0;
   for (let _keys = Map_keys(managedClasses), i = 0, k = _keys.length; i < k; ++i) {
     let instanceId = _keys[i];
-    assert(instanceId == nextId++);
+    //assert(instanceId == nextId++);
     let instance = assert(managedClasses.get(instanceId));
     names[i] = instance.internalName;
     if (instance.isPointerfree) {
@@ -9735,7 +9735,7 @@ export function compileRTTI(compiler: Compiler): void {
   for (let _keys = Map_keys(managedClasses), i = 0, k = _keys.length; i < k; ++i) {
     let instanceId = unchecked(_keys[i]);
     let instance = assert(managedClasses.get(instanceId));
-    assert(instanceId == lastId++);
+    //assert(instanceId == lastId++);
     let flags: TypeinfoFlags = 0;
     if (instance.isPointerfree) flags |= TypeinfoFlags.POINTERFREE;
     if (instance !== abvInstance && instance.extends(abvPrototype)) {

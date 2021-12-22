@@ -75,6 +75,10 @@ import {
 } from "./tokenizer";
 
 import {
+  hash
+} from "./util";
+
+import {
   Node,
   NodeKind,
   Source,
@@ -4207,9 +4211,15 @@ export class Class extends TypedElement {
     this.setType(type);
 
     if (!this.hasDecorator(DecoratorFlags.UNMANAGED)) {
-      let id = program.nextClassId++;
-      this._id = id;
-      program.managedClasses.set(id, this);
+      if (_isInterface) {
+        this._id = hash(this.name);
+        console.log("idntifiant ", this._id, this.name);
+        program.managedClasses.set(this._id, this);
+      } else {
+        let id = program.nextClassId++;
+        this._id = id;
+        program.managedClasses.set(id, this);
+      }
     }
 
     // apply pre-checked instance-specific contextual type arguments
